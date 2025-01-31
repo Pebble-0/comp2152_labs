@@ -81,6 +81,16 @@ loot_options = ["Health Potion", "Poison Potion", "Secret Note", "Leather Boots"
 good_loot_options = ["Health Potion", "Leather Boots"]
 bad_loot_options = ["Poison Potion"]
 
+#Q4
+belt = []
+
+# Q1 - Define the Monster Power
+monster_power = {
+    "Fire Magic": 2,
+    "Freezing time": 4,
+    "Super Hearing": 6,
+}
+
 # Define the number of stars awarded to the Player
 num_stars = 0
 
@@ -144,12 +154,38 @@ input("Roll the dice for the monster's health points (Press enter)")
 m_health_points = random.choice(diceOptions)
 print("Player rolled " + str(m_health_points) + " health points for the monster")
 
+# Q5 - item 1
+print("You find a loot bag! look inside to find 2 items")
+input("Roll for the first item (Press Enter)")
+lootRoll = random.choice(range(1, len(loot_options) + 1))
+loot = loot_options.pop(lootRoll - 1)
+belt.append(loot)
+print("Your belt item is: ", belt)
+
+# Q6 - item 2
+print("You find a loot bag! look inside to find 2 items")
+input("Roll for the second item (Press Enter)")
+lootRoll = random.choice(range(1, len(loot_options) + 1))
+loot = loot_options.pop(lootRoll - 1)
+belt.append(loot)
+print("Your belt items are: ", belt)
+
 input("Analyze the roll (Press enter)")
 # Compare Player vs Monster's strength
 print("--- You are matched in strength: " + str(combat_strength == m_combat_strength))
 
 # Check the Player's overall strength and health
 print("--- You have a strong player: " + str((combat_strength + health_points) >= 15))
+
+# Q2
+input("Roll for the Monster Power! (Press Enter)")
+power_roll = random.choice(["Fire Magic", "Freezing Time", "Super Hearing"])
+
+# Q3
+m_combat_strength = min(6, (m_combat_strength + monster_power[power_roll]))
+print("The Monster Combat Strength is: " + str(m_combat_strength) + "Using the " + power_roll)
+
+
 
 # Loop while the monster and the player are alive. Call fight sequence functions
 print("You meet the monster. FIGHT!!")
